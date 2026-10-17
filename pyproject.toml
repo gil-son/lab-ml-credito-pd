@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pd-model"
+version = "0.1.0"
+description = "Exemplo funcional de projeto ML sobre a plataforma mlops-platform: churn de clientes."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { text = "Proprietary" }
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+spark = [
+    "pyspark==3.5.3",
+    "delta-spark==3.2.1",
+]
+mlflow = [
+    "mlflow==2.17.2",
+]
+feature-store = [
+    # Requer setuptools<81 no ambiente de execução (o client ainda importa
+    # pkg_resources, removido do setuptools nas versões mais novas).
+    "databricks-feature-engineering==0.6.0",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+    "mypy>=1.11",
+    "pandas>=2.0,<2.3",
+    "pyarrow>=14,<17",
+    "numpy<2.0",
+]
+
+[project.scripts]
+pd-run-feature-engineering = "credito_pd_model.cli.run_feature_engineering:main"
+pd-run-eda = "credito_pd_model.cli.run_eda:main"
+pd-run-data-quality = "credito_pd_model.cli.run_data_quality:main"
+pd-train-model = "credito_pd_model.cli.train_model:main"
+pd-evaluate-model = "credito_pd_model.cli.evaluate_model:main"
+pd-run-inference = "credito_pd_model.cli.run_inference:main"
+pd-monitor-model = "credito_pd_model.cli.monitor_model:main"
+pd-run-smoke-test = "credito_pd_model.cli.run_smoke_test:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+disallow_untyped_defs = false
