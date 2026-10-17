@@ -1,5 +1,9 @@
 """Geração determinística de dados sintéticos de churn de clientes.
 
+TODO(fase-3): legado do template, mantido só enquanto os testes herdados dependem dele.
+Remover junto com ``schemas.py`` e ``data/sample/customers_churn.csv`` quando o PD estiver completo
+(substituto: ``synthetic_credit.py``).
+
 Usada para popular ``data/sample/`` (exemplo versionado no repositório) e como
 fixture nos testes Spark/integração -- garante que o exemplo funcional roda
 sem qualquer fonte de dados externa ou credencial.

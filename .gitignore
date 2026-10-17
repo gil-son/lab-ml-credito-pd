@@ -31,3 +31,7 @@ derby.log
 
 # Segredos locais -- nunca versionar.
 .env
+
+# Dataset sintético de crédito: gerado por script, não versionado (~50 mil linhas).
+# Gerar com: python -m credito_pd_model.cli.generate_credit_data
+data/sample/credito_pd.csv

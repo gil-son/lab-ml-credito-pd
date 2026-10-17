@@ -1,5 +1,7 @@
 """Schema explícito dos dados brutos de churn de clientes.
 
+TODO(fase-3): legado do template; remover quando o PD estiver completo (substituto: ``credit_schema.py``).
+
 Usado por leitura (evita inferência em produção), validação e geração de dados
 sintéticos de exemplo -- é a única fonte de verdade sobre nomes/tipos de coluna.
 """
